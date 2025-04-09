@@ -13,8 +13,8 @@ export const PeriodButton = ({
     <button
       onClick={handleClick}
       className={`px-4 py-2 rounded ${selectedPeriod === period
-        ? 'bg-blue-600 text-white'
-        : 'bg-gray-200 hover:bg-gray-300'
+        ? 'bg-blue-600 text-white pointer-events-none'
+        : 'bg-gray-200 hover:bg-gray-300 cursor-pointer'
         }`}
       data-testid={`period-${period}`}
     >

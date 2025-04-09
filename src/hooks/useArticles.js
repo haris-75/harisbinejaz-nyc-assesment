@@ -1,26 +1,35 @@
 import { useEffect, useState } from "react";
+import { fetchMostViewedArticles } from "../services/api";
 
-const API_KEY = `${import.meta.env.VITE_NYC_TZ_KEY}`;
-const PERIOD = 7;
-const MOST_POPULAR_ARTICLES = `https://api.nytimes.com/svc/mostpopular/v2/viewed/${PERIOD}.json?api-key=${API_KEY}`;
-export function useArticles() {
+export const useArticles = (period = 7) => {
 	const [articles, setArticles] = useState([]);
-	const [selectedArticle, setSelectedArticle] = useState(null);
 	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState(null);
+	const [selectedPeriod, setSelectedPeriod] = useState(period);
 
 	useEffect(() => {
-		fetch(MOST_POPULAR_ARTICLES)
-			.then(res => res.json())
-			.then(data => {
-				setArticles(data?.results);
+		const getArticles = async () => {
+			try {
+				setLoading(true);
+				setError(null);
+				const data = await fetchMostViewedArticles(selectedPeriod);
+				setArticles(data);
+			} catch (err) {
+				console.error(err);
+				setError("Failed to fetch articles. Please try again later.");
+			} finally {
 				setLoading(false);
-			});
-	}, []);
+			}
+		};
+
+		getArticles();
+	}, [selectedPeriod]);
 
 	return {
 		articles,
-		selectedArticle,
-		setSelectedArticle,
 		loading,
+		error,
+		selectedPeriod,
+		setSelectedPeriod,
 	};
-}
+};
