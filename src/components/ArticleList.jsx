@@ -1,9 +1,41 @@
 import { ArticleCard } from './ArticleCard';
 import { LoadingSpinner } from './LoadingSpinner';
 import { ErrorMessage } from './ErrorMessage';
+import { PeriodButton } from './PeriodButton';
 
-export const ArticleList = ({ articles, loading, error, onArticleSelect, selectedPeriod, onPeriodChange }) => {
+export const ArticleList = ({
+  articles = [],
+  loading = false,
+  error = '',
+  onArticleSelect = () => { },
+  selectedPeriod = 1,
+  onPeriodChange = () => { }
+}) => {
   const periods = [1, 7, 30];
+
+  const handlePeriodChange = (period) => {
+    onPeriodChange(period);
+  };
+
+  const renderContent = () => {
+    if (loading) {
+      return <LoadingSpinner />;
+    }
+    if (error) {
+      return <ErrorMessage message={error} />;
+    }
+    return (
+      <div data-testid="article-list">
+        {articles.map((article) => (
+          <ArticleCard
+            key={article.id}
+            article={article}
+            onClick={onArticleSelect}
+          />
+        ))}
+      </div>
+    );
+  };
 
   return (
     <div className="container mx-auto p-4">
@@ -13,37 +45,17 @@ export const ArticleList = ({ articles, loading, error, onArticleSelect, selecte
           <span className="font-medium">Time Period:</span>
           <div className="flex space-x-2">
             {periods.map(period => (
-              <button
+              <PeriodButton
                 key={period}
-                onClick={() => onPeriodChange(period)}
-                className={`px-4 py-2 rounded ${selectedPeriod === period
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-gray-200 hover:bg-gray-300'
-                  }`}
-                data-testid={`period-${period}`}
-              >
-                {period} {period === 1 ? 'Day' : 'Days'}
-              </button>
+                handlePeriodChange={handlePeriodChange}
+                selectedPeriod={selectedPeriod}
+                period={period}
+              />
             ))}
           </div>
         </div>
       </div>
-
-      {loading ? (
-        <LoadingSpinner />
-      ) : error ? (
-        <ErrorMessage message={error} />
-      ) : (
-        <div data-testid="article-list">
-          {articles.map(article => (
-            <ArticleCard
-              key={article.id}
-              article={article}
-              onClick={onArticleSelect}
-            />
-          ))}
-        </div>
-      )}
+      {renderContent()}
     </div>
   );
 };
