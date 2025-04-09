@@ -1,12 +1,18 @@
-
+import { useState } from 'react';
 import { useArticles } from '../hooks/useArticles';
 import { ArticleList } from '../components/ArticleList';
+import { ArticleDetail } from '../components/ArticleDetail';
 
 export const ArticlesContainer = () => {
+  const [selectedArticle, setSelectedArticle] = useState(null);
   const { articles, loading, error, selectedPeriod, setSelectedPeriod } = useArticles(7);
 
-  const handleArticleSelect = () => {
-    // TODO: select article here
+  const handleArticleSelect = (article) => {
+    setSelectedArticle(article);
+  };
+
+  const handleBackToList = () => {
+    setSelectedArticle(null);
   };
 
   const handlePeriodChange = (period) => {
@@ -15,14 +21,21 @@ export const ArticlesContainer = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <ArticleList
-        articles={articles}
-        loading={loading}
-        error={error}
-        onArticleSelect={handleArticleSelect}
-        selectedPeriod={selectedPeriod}
-        onPeriodChange={handlePeriodChange}
-      />
+      {selectedArticle ? (
+        <ArticleDetail
+          article={selectedArticle}
+          onBack={handleBackToList}
+        />
+      ) : (
+        <ArticleList
+          articles={articles}
+          loading={loading}
+          error={error}
+          onArticleSelect={handleArticleSelect}
+          selectedPeriod={selectedPeriod}
+          onPeriodChange={handlePeriodChange}
+        />
+      )}
     </div>
   );
 };

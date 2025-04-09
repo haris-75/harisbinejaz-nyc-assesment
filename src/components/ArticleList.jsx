@@ -1,9 +1,8 @@
-
-
 import { ArticleCard } from './ArticleCard';
+import { LoadingSpinner } from './LoadingSpinner';
+import { ErrorMessage } from './ErrorMessage';
 
-
-export const ArticleList = ({ articles, onArticleSelect, selectedPeriod, onPeriodChange }) => {
+export const ArticleList = ({ articles, loading, error, onArticleSelect, selectedPeriod, onPeriodChange }) => {
   const periods = [1, 7, 30];
 
   return (
@@ -30,17 +29,21 @@ export const ArticleList = ({ articles, onArticleSelect, selectedPeriod, onPerio
         </div>
       </div>
 
-
-      <div data-testid="article-list">
-        {articles.map(article => (
-          <ArticleCard
-            key={article.id}
-            article={article}
-            onClick={onArticleSelect}
-          />
-        ))}
-      </div>
-
+      {loading ? (
+        <LoadingSpinner />
+      ) : error ? (
+        <ErrorMessage message={error} />
+      ) : (
+        <div data-testid="article-list">
+          {articles.map(article => (
+            <ArticleCard
+              key={article.id}
+              article={article}
+              onClick={onArticleSelect}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
