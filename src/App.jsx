@@ -1,5 +1,7 @@
+import useArticle from './hooks/useArticle'
 
 function App() {
+
   return (
     <div>
       <p className="text-xl">
