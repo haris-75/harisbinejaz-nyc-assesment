@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 const API_KEY = `${import.meta.env.VITE_NYC_TZ_KEY}`;
 const PERIOD = 7;
 const MOST_POPULAR_ARTICLES = `https://api.nytimes.com/svc/mostpopular/v2/viewed/${PERIOD}.json?api-key=${API_KEY}`;
-export default function useArticle() {
+export function useArticles() {
 	const [articles, setArticles] = useState([]);
 	const [selectedArticle, setSelectedArticle] = useState(null);
 	const [loading, setLoading] = useState(true);

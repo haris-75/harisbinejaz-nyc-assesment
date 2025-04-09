@@ -1,14 +1,11 @@
-import useArticle from './hooks/useArticle'
+
+import { ArticlesContainer } from './containers/ArticlesContainer';
 
 function App() {
-
   return (
-    <div>
-      <p className="text-xl">
-        Click on the Vite and React logos to learn more
-      </p>
+    <div className="App">
+      <ArticlesContainer />
     </div>
-  )
+  );
 }
-
 export default App
