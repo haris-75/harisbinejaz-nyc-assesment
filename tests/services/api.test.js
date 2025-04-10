@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { fetchMostViewedArticles } from '../../src/services/api';
 import { mockApiResponse } from '../mocks/mockData';
 
-global.fetch = vi.fn(); // mock fetch globally
+global.fetch = vi.fn();
 
 describe('fetchMostViewedArticles', () => {
   beforeEach(() => {

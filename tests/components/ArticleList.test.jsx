@@ -2,7 +2,6 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { ArticleList } from '../../src/components/ArticleList';
 import { mockArticles } from '../mocks/mockData';
 
-// Mock child components
 vi.mock('../../src/components/ArticleCard', () => ({
   ArticleCard: ({ article, onClick }) => (
     <div data-testid="article-card" onClick={() => onClick(article)}>

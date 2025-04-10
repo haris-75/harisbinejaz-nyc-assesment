@@ -4,7 +4,6 @@ import { mockArticle } from '../mocks/mockData';
 
 test('renders article content correctly', () => {
   render(<ArticleCard article={mockArticle} onClick={() => { }} />);
-
   expect(screen.getByText(/Detailed Article Title/i)).toBeInTheDocument();
   expect(screen.getByText(/This is the abstract of the detailed article./i)).toBeInTheDocument();
   expect(screen.getByText(/By John Smith/i)).toBeInTheDocument();
