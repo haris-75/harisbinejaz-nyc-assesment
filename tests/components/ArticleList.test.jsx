@@ -4,26 +4,26 @@ import { mockArticles } from '../mocks/mockData';
 
 vi.mock('../../src/components/ArticleCard', () => ({
   ArticleCard: ({ article, onClick }) => (
-    <div data-test-id="article-card" onClick={() => onClick(article)}>
+    <div data-testid="article-card" onClick={() => onClick(article)}>
       {article.title}
     </div>
   ),
 }));
 
 vi.mock('../../src/components/LoadingSpinner', () => ({
-  LoadingSpinner: () => <div data-test-id="loading-spinner">Loading...</div>,
+  LoadingSpinner: () => <div data-testid="loading-spinner">Loading...</div>,
 }));
 
 vi.mock('../../src/components/ErrorMessage', () => ({
   ErrorMessage: ({ message }) => (
-    <div data-test-id="error-message">{message}</div>
+    <div data-testid="error-message">{message}</div>
   ),
 }));
 
 vi.mock('../../src/components/PeriodButton', () => ({
   PeriodButton: ({ period, handlePeriodChange, selectedPeriod }) => (
     <button
-      data-test-id={`period-btn-${period}`}
+      data-testid={`period-btn-${period}`}
       className={selectedPeriod === period ? 'selected' : ''}
       onClick={() => handlePeriodChange(period)}
     >

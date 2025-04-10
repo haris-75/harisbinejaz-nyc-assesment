@@ -11,7 +11,7 @@ export const ArticleCard = ({ article = {}, onClick }) => {
     <div
       className="border rounded-lg shadow-md p-4 mb-4 cursor-pointer hover:bg-gray-50 transition-colors"
       onClick={handleClick}
-      data-test-id="article-card"
+      data-testid="article-card"
     >
       <h2 className="text-xl font-bold mb-2">{title}</h2>
       <p className="text-gray-700 mb-2">{abstract}</p>

@@ -35,7 +35,7 @@ describe('NY Times Most Viewed Articles', () => {
   });
 
   it('displays mocked articles', () => {
-    cy.get('[data-test-id="article-card"]').should(
+    cy.get('[data-testid="article-card"]').should(
       'have.length',
       mockArticles.length,
     );
@@ -46,28 +46,28 @@ describe('NY Times Most Viewed Articles', () => {
   it('allows changing the time period filter', () => {
     cy.contains('1').click();
     cy.wait('@getArticles');
-    cy.get('[data-test-id="article-card"]').should(
+    cy.get('[data-testid="article-card"]').should(
       'have.length',
       mockArticles.length,
     );
 
     cy.contains('7').click();
     cy.wait('@getArticles');
-    cy.get('[data-test-id="article-card"]').should(
+    cy.get('[data-testid="article-card"]').should(
       'have.length',
       mockArticles.length,
     );
 
     cy.contains('30').click();
     cy.wait('@getArticles');
-    cy.get('[data-test-id="article-card"]').should(
+    cy.get('[data-testid="article-card"]').should(
       'have.length',
       mockArticles.length,
     );
   });
 
   it('navigates to article detail view when an article is clicked', () => {
-    cy.get('[data-test-id="article-card"]').first().click();
+    cy.get('[data-testid="article-card"]').first().click();
     cy.get('h1').should('contain', mockArticles[0].title);
     cy.get('a')
       .should('have.attr', 'href', mockArticles[0].url)

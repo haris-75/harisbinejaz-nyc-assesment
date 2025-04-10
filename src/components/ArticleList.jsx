@@ -25,7 +25,7 @@ export const ArticleList = ({
       return <ErrorMessage message={error} />;
     }
     return (
-      <div data-test-id="article-list">
+      <div data-testid="article-list">
         {articles.map((article) => (
           <ArticleCard
             key={article.id}

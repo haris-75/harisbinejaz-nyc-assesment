@@ -52,7 +52,7 @@ export const ArticleDetail = ({ article = {}, onBack = () => { } }) => {
     <div className="container mx-auto p-4">
       <BackButton text="Back to List" onClick={handleBackClick} />
 
-      <article className="bg-white rounded-lg shadow-lg p-6" data-test-id="article-detail">
+      <article className="bg-white rounded-lg shadow-lg p-6" data-testid="article-detail">
         <h1 className="text-3xl font-bold mb-4">{title}</h1>
 
         <div className="flex items-center text-gray-600 mb-6">
