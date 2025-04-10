@@ -16,7 +16,7 @@ export const PeriodButton = ({
         ? 'bg-blue-600 text-white pointer-events-none'
         : 'bg-gray-200 hover:bg-gray-300 cursor-pointer'
         }`}
-      data-testid={`period-${period}`}
+      data-test-id={`period-${period}`}
     >
       {period} {period === 1 ? 'Day' : 'Days'}
     </button>

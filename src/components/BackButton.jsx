@@ -5,7 +5,7 @@ export const BackButton = ({ onClick, text }) => {
     <button
       onClick={onClick}
       className="mb-4 flex items-center text-blue-600 hover:text-blue-800 cursor-pointer"
-      data-testid="back-button"
+      data-test-id="back-button"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
